@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Vietnamese 
-# Cam thay` quy rung lac qua'. @@. x no' nhay~ lien tuc
+# Camera thay` quay rung lac qua'. @@. x-axis no' nhay~ lien tuc
 
 cap = cv2.VideoCapture('pingping.mp4')
 
