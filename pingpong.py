@@ -4,7 +4,7 @@ import numpy as np
 # Vietnamese 
 # Camera thay` quay rung lac qua'. @@. x-axis no' nhay~ lien tuc
 
-cap = cv2.VideoCapture('pingping.mp4')
+cap = cv2.VideoCapture('./data/pingping.mp4')
 
 rightPoint, leftPoint = 0, 0
 aMove, bMove = False, False
@@ -68,7 +68,8 @@ while(True):
                         1,
                         (0, 0, 255),
                         2)
-    cv2.imshow('mask', frame)
+    cv2.imshow('mask', mask)
+    cv2.imshow('frame',frame)
 
     # wait for enter key to break
     c = cv2.waitKey(1)
