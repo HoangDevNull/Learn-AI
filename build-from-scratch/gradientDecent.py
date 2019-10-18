@@ -15,27 +15,27 @@ def grad1a(x):
     return 3*(x**2) - 4*x + 3
 
 
-def cost1b(x):
+def cost(x):
     return np.sin(x) - np.cos(x) + np.tan(x)
 
 
-def grad1b(x):
+def grad(x):
     return np.cos(x) + np.sin(x) + 1/(np.cos(x))**2
 
 
 def cost1c(x):
-    return x**4 + 2*math.sqrt(x)
+    return x**4 + 2*(x**(0.5))
 
 
 def grad1c(x):
-    return 4*(x**3) + 1/math.sqrt(x)
+    return 4*(x**3) + 1/(x**(0.5))
 
 
-def cost(x):
+def cost1d(x):
     return (np.cos(x)/np.sin(x)) - 3*x + 2
 
 
-def grad(x):
+def grad1d(x):
     return -1/(np.sin(x))**2 - 3
 
 
@@ -122,7 +122,7 @@ def GD_NAG(x0, eta=0.1, gamma=0.9):
 def plot_fn(fn, xmin=-5, xmax=5, xaxis=True, opts='b-'):
     x = np.linspace(xmin, xmax, 1000)
     y = fn(x)
-    ymin = np.min(y) - .5
+    ymin = np.min(y) - .5;
     ymax = np.max(y) + .5
     plt.axis([xmin, xmax, ymin, ymax])
     if xaxis:
@@ -134,7 +134,7 @@ def plot_fn(fn, xmin=-5, xmax=5, xaxis=True, opts='b-'):
 # Animation
 
 
-def viz_alg_1d_2(x, cost, filename='nomomentum1d.html'):
+def viz_alg_1d_2(x, cost, filename='nomomentum1d.gif'):
     #     x = x.asarray()
     it = len(x)
     y = cost(x)
@@ -152,14 +152,14 @@ def viz_alg_1d_2(x, cost, filename='nomomentum1d.html'):
         plt.axis([-4, 6, -13, 26])
         plt.plot(x0, y0)
         plt.axis([xmin, xmax, ymin, ymax])
-        ani = plt.title('$f(x) = x^2 + 10\sin(x); x_0 = 5; \eta = 0.1$')
+        ani = plt.title('$f(x) =sin(x) - cos(x) + tan(X); \eta = 0.1$')
         if i == 0:
             ani = plt.plot(x[i], y[i], 'ro', markersize=7)
         else:
             ani = plt.plot(x[i-1], y[i-1], 'ok', markersize=7)
             ani = plt.plot(x[i-1:i+1], y[i-1:i+1], 'k-')
             ani = plt.plot(x[i], y[i], 'ro', markersize=7)
-        label = 'GD without Momemtum: iter %d/%d' % (i, it)
+        label = 'GD with NAG: iter %d/%d' % (i, it)
         ax.set_xlabel(label)
         return ani, ax
 
