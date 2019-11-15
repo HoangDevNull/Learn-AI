@@ -1,7 +1,7 @@
 ## Doc lai du global_features va labels tu file da luu
 ## Chay mo hinh SVC
 
-from sklearn import svm
+from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import numpy as np
@@ -12,7 +12,8 @@ labels = np.loadtxt("label-datas.txt")
 
 ## Train Mo hinh
 C = 1.0
-model = svm.SVC(kernel='linear', C=C)
+# model = SVC(gamma='auto', random_state=9)
+model= SVC(kernel = 'linear', C = 0.1)
 model.fit(features, labels)
 
 

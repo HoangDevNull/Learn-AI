@@ -2,7 +2,7 @@
 ## Chay mo hinh SVC
 
 
-from sklearn import svm
+from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import numpy as np
@@ -11,19 +11,14 @@ import mahotas
 features = np.loadtxt("feature-datas.txt")
 labels = np.loadtxt("label-datas.txt")
 
+x_train, x_test, y_train, y_test = train_test_split(features, labels, test_size=0.3)
 
-x_train,x_test,y_train,y_test = train_test_split(features,labels,test_size = 0.3)
+model = SVC(gamma='auto', random_state=9)
+# model= SVC(kernel = 'linear', C = 0.1)
+model.fit(x_train, y_train)
 
-
-
-## Train Mo hinh
-C = 1.0
-model = svm.SVC(kernel='linear', C=C)
-model.fit(features, labels)
-y_pred = model.predict(x_test)
-
-print("Acc "  + str( accuracy_score(y_test,y_pred)));
-
+y_pred=model.predict(x_test)
+print("Accuracy: "+ str(100*accuracy_score(y_test,y_pred)))
 
 
 # from sklearn.model_selection import train_test_split
