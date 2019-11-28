@@ -62,7 +62,7 @@ labels          = []
 
 def train_file():
 # loop over the training data sub-folders
-    i = 1
+    i = -1
     for training_name in train_labels:
         # join the training data path and each species training folder
         dir = os.path.join(train_path, training_name)
@@ -97,7 +97,7 @@ def train_file():
             global_features.append(global_feature)
 
             print(labels)
-        i = -1
+        i = 1
     np.savetxt('feature-datas.txt', global_features)
     np.savetxt('label-datas.txt', labels)
     print("[STATUS] processed folder: {}".format(current_label))
