@@ -33,12 +33,14 @@ solvers.options['show_progress'] = False
 sol = solvers.qp(P, q, G, h, A, b)
 l = np.array(sol['x'])
 
-# get weights
-w = np.sum(l * y.reshape(-1,1) * X, axis = 0) # e 16
-# get bias
 S = (l > 1e-4).reshape(-1)
+
+XS = X[S]
+yS = y[S]
+
+w = np.sum(l * y.reshape(-1,1) * X, axis = 0) # e 16
 print(S.shape, 'c')
-b = (y[S] - np.dot(X[S], w))[0] # e 15 
+b = (yS - np.dot(XS, w))[0] # e 15 
 
 print(w.shape,'w shape')
 # print('w = ', w.T)
@@ -83,7 +85,7 @@ def fd_histogram(image, mask=None):
 
 fixed_size       = tuple((500, 500))
 
-image = cv2.imread('2.jpg')
+image = cv2.imread('1.jpg')
 
 # resize the image
 image = cv2.resize(image, fixed_size)
@@ -123,13 +125,11 @@ def predict(ws ,xs , b) :
 result = predict(ws,xs,b)
 
 # -1 tulip  1 sunflower  => new X  = + or -  by 
-
 if(result < 0 ): 
     print('tulip')
 else:
     print('sunflower')
 
-# w1 = model.coef_
-# b1 = model.intercept_
+# w1 = model.coef_# b1 = model.intercept_
 
 # print(model.predict(rescaled_feature.reshape(1,-1))[0], 'svc')
